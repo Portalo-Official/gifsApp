@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+
 import { environmetns } from '../../environments/environment';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class GifsService {
 
   private _tagsHistory: string[] = [];
 
-  constructor(private httpClient : HttpClient) { }
+  constructor() { }
 
   get tagsHistory(): Array<string>{
     //? Usamos spread para mandar una copiar y cortar la referencia en memoria.
@@ -25,19 +25,7 @@ export class GifsService {
     // this.realizarBusqueda(tag);
 
   }
-  realizarBusqueda(tag: string) {
-    let baseUrl  : string = environmetns.baseUrl;
-    let endpoint : string = environmetns.endpoint.search;
-    // let params : HttpParams;
 
-    //? Al ser un Obrsevable => Esperamos algo de el.
-    //? Por eso se hace --> .subscribe( res => { acciones })
-    // this.http.get(`${baseUrl}/${endpoint}`)
-    //          .subscribe( response => {
-    //           console.log(response);
-    //          });
-
-  }
 
   organizeArray(tag : string): void {
     if(this.contain(tag))
