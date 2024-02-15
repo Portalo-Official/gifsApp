@@ -1,0 +1,13 @@
+<div class="bg-oscuro  border-end  p-3 justify-content-center align-content-center " id="sidebar">
+  <h3 class="text-light text-xl-center ">GifsApp</h3>
+  <hr class="text-white ">
+
+  <div class="list-group list-reset"
+      *ngFor="let tag of Listado;
+       let i = index">
+    <button class="list-group-item list-group-item-action text-md-center mb-1 ">
+      {{tag | titlecase}}
+    </button>
+
+  </div>
+</div>
