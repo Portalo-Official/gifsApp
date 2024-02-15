@@ -6,7 +6,6 @@ import { CardListComponent } from './components/card-list/card-list.component';
 import { GifsService } from './service/gifs.service';
 
 
-
 @NgModule({
   declarations: [
     HomePageComponent,

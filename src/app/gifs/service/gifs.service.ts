@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { environmetns } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { SearchResponse } from '../interfaces/gifs.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -21,23 +22,26 @@ export class GifsService {
     // Meter el tag el primero
     if(this.isValidate(tag) ){
       this.organizeArray(tag);
+      this.realizarBusqueda(tag);
     }
-
-    // this.realizarBusqueda(tag);
 
   }
 
-  realizarBusqueda(tag: string) {
+  realizarBusqueda(tag: string):void {
     let baseUrl  : string = environmetns.baseUrl;
     let endpoint : string = environmetns.endpoint.search;
-    // let params : HttpParams;
+    let params : HttpParams = new HttpParams()
+                                  .set('api_key', environmetns.apiKey)
+                                  .set('limit', 10)
+                                  .set('q',tag);
 
-    //? Al ser un Obrsevable => Esperamos algo de el.
-    //? Por eso se hace --> .subscribe( res => { acciones })
-    // this.http.get(`${baseUrl}/${endpoint}`)
-    //          .subscribe( response => {
-    //           console.log(response);
-    //          });
+    // ? Al ser un Obrsevable => Esperamos algo de el.
+    // ? Por eso se hace --> .subscribe( res => { acciones })
+    this.http.get<SearchResponse>(`${baseUrl}/${endpoint}`, { params : params})
+             .subscribe( (resp) => {
+              console.log(resp.data);
+             });
+
 
   }
 
