@@ -1,6 +1,11 @@
 # Gifsapp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
+Proyecto para practicar angular con la Api de GIPHY.
+
+### Api Key
+
+La api key es personal de mi cuenta de giphy. Cambiar esta por si se eliminó.
+Ruta de variables de entorno app/enviroment.ts
 
 ## Development server
 
