@@ -5,7 +5,8 @@
   <div class="list-group list-reset"
       *ngFor="let tag of Listado;
        let i = index">
-    <button class="list-group-item list-group-item-action text-md-center mb-1 ">
+    <button class="list-group-item list-group-item-action text-md-center mb-1 "
+            (click)="doSearch(tag)">
       {{tag | titlecase}}
     </button>
 
