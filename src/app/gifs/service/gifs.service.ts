@@ -2,16 +2,21 @@ import { Injectable } from '@angular/core';
 
 import { environmetns } from '../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { SearchResponse } from '../interfaces/gifs.interfaces';
+import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GifsService {
 
-  private _tagsHistory: string[] = [];
+  private _tagsHistory : Array<string>;
 
-  constructor( private http : HttpClient) { }
+  private gifsList     : Array<Gif>;
+
+  constructor( private http : HttpClient) {
+    this._tagsHistory = [];
+    this.gifsList     = [];
+   }
 
   get tagsHistory(): Array<string>{
     //? Usamos spread para mandar una copiar y cortar la referencia en memoria.
@@ -39,12 +44,18 @@ export class GifsService {
     // ? Por eso se hace --> .subscribe( res => { acciones })
     this.http.get<SearchResponse>(`${baseUrl}/${endpoint}`, { params : params})
              .subscribe( (resp) => {
-              console.log(resp.data);
+              this.gifs = resp.data;
              });
-
 
   }
 
+  private set gifs( gifsList: Array<Gif>){
+    this.gifsList = gifsList;
+  }
+
+  public get gifs(): Array<Gif>{
+    return this.gifsList;
+  }
 
   organizeArray(tag : string): void {
     if(this.contain(tag))
