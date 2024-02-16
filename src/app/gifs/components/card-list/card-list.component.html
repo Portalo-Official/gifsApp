@@ -1,14 +1,17 @@
 
 <div class="row">
   <!--  col-md para pantallas medianas  -->
-  <div class="col-md-3 col-sm-6 ">
+  <div class="col-md-3 col-sm-6 "
+    *ngFor="let gif of gifsList">
     <!-- ? gifs-card -->
     <div class="card mb-2 text-center bg-dark">
 
       <!-- TODO: Crear imagen -->
+      <img [src]="gif.images.downsized_medium.url" [alt]="gif.title"
+        class="card-img-top">
 
       <div class="card-body">
-        <p class="card-text text-white ">Hola mundo</p>
+        <p class="card-text text-white ">{{gif.title}}</p>
       </div>
     </div>
   </div>
